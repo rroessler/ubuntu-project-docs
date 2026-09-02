@@ -1,0 +1,323 @@
+{
+  "header": [
+    "---",
+    "myst:",
+    "  html_meta:",
+    "    description: \"Standard bug responses, and instructions to access them as a Firefox extension\"",
+    "---",
+    "",
+    "(bug-responses)=",
+    "# Bug responses",
+    "",
+    "It is common when triaging bugs that you need to respond to the original reporter – perhaps to request more information, or to redirect their request, etc. Over time, a set of curated standard responses has been created, and you can use these when you correspond with the reporter.",
+    "",
+    "```{admonition} Keeping responses up to date",
+    "The standard responses below are the canonical source of truth for bug triage responses. A Firefox extension and a PPA ([~gm-dev-launchpad](https://launchpad.net/~gm-dev-launchpad/+archive/ubuntu/ppa)) were used in the past to distribute these responses, but they are out of date. If you find a response that is outdated, please update it directly on this page.",
+    "```"
+  ],
+
+  "footer": [
+    "## Links",
+    "",
+    "Other projects have standard responses as well:",
+    "",
+    "* [GNOME](https://wiki.gnome.org/Bugsquad/TriageGuide/StockResponses)",
+    "* [Mozilla Team](https://wiki.ubuntu.com/MozillaTeam/Bugs/Triage/Responses)"
+  ],
+
+  "targets": [
+    {
+      "header": "Missing information",
+      "label": "Not described well",
+      "script": "stock-reply",
+      "args": ["-r", "incomplete"]
+    },
+    {
+      "label": "Missing steps to recreate the bug",
+      "script": "stock-reply",
+      "args": ["-r", "missing_steps"]
+    },
+    {
+      "label": "Missing Apport information",
+      "script": "collect-it",
+      "args": ["BUGNUMBER"]
+    },
+
+    {
+      "header": [
+        "Package- or domain-specific questions",
+        "",
+        "The following packages or type of bugs require specific information."
+      ]
+    },
+    {
+      "label": "Debugging kernel (general)",
+      "describe": "Please also see the Ubuntu Kernel Team's [specific responses](https://wiki.ubuntu.com/Kernel/BugTriage/Responses) for Linux (Ubuntu) kernel bugs."
+    },
+    {
+      "label": "Debugging Sound problems",
+      "script": "sound-bug",
+      "args": ["BUGNUMBER"]
+    },
+    {
+      "label": "Debugging ACPI",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Removable Devices",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Printing problems",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Hardware Detection",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging USB Storage",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Xorg in general",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Freeze during boot or shutdown screen",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Plymouth",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Live Installation",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging a Distribution Upgrade",
+      "script": "40-byte-varlogdistupgrade"
+    },
+    {
+      "label": "Debugging GNOME Power Manager",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Network Manager",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Firefox",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging Samba",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging OpenLDAP",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging FFMPEG",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+    {
+      "label": "Debugging SCIM Related Issues",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Incomplete bugs without a response from submitter",
+      "describe": [
+        "Some bugs are never responded to by the submitter (also called \"original poster\", or \"OP\").",
+        "These bugs will be automatically expired by Launchpad in 60 days, counted from the day it was set incomplete.",
+        "",
+        "There is no need to act on them (and, actually, changing the bug will restart the expiry period). Note that this applies for the Ubuntu project (i.e., those bug tasks that have \"(Ubuntu)\" in their name).",
+        "Other projects may, or may not, have automatic incomplete bug expiration set."
+      ]
+    },
+
+    {
+      "header": "Bugs without a package",
+      "script": "assign-package",
+      "args": ["--package", "PKGNAME"],
+      "describe": [
+        "Sometimes bugs will be reported just using the “Ubuntu” package.",
+        "This is not the best place for the bug though and we should encourage bug reporters to report the bug against the correct package by pointing them at some documentation.",
+        "Keep in mind PKGNAME is a placeholder.",
+        "",
+        "```{warning}",
+        "If you use this response, you must assign a package. If you do not know what package to assign, please leave the bug alone, and ask for help.",
+        "```"
+      ]
+    },
+
+    {
+      "header": "Bugs resolved after update or config change",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Needs testing in the development release",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Missing a crash report or having a .crash attachment",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "A duplicate bug",
+      "script": "is-duplicate",
+      "args": ["--master", "NUMBER"],
+      "describe": [
+        "When making a bug report a duplicate of another it is important to communicate to the reporter that any discussion regarding the bug should take place in the primary bug.",
+        "Keep in mind that NUMBER is a placeholder and should be the number of the primary bug report."
+      ]
+    },
+
+    {
+      "header": "About an obsolete version of the software for reporter's release",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Missing a backtrace",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Unusable stack trace after retracing",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Need valgrind log",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "A bug that should be handled upstream",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Old untouched bugs",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Packages not provided by Ubuntu",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Fixed in development release while still existing in previous release",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Reported by someone not respecting the Code of Conduct",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "A support request",
+      "script": "security/is-question",
+      "describe": [
+        "Determining whether a bug report is actually a support request can be quite challenging, but if you decide the bug *is* a support request you can convert it to such by clicking {guilabel}`Convert to a question` at the top of the bug's web page.",
+        "This will mark the bug as *Invalid*, create a new question in the answer tracker and link it to the bug.",
+        "In the comment dialog that you receive, post a comment to inform the reporter about your action, and advise them to use the support tracker for any future problems."
+      ]
+    },
+
+    {
+      "header": "Not reported in English",
+      "script": "translation-needed",
+      "describe": "This response is appropriate when a bug is not reported in English or some error messages are not in English."
+    },
+
+    {
+      "header": "Suspected bad ISO download",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "A suggestion for changing default applications or preferences",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "About an incorrect translation",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Incomplete package request",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Triage successful",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Triage unsuccessful: Back to New/Incomplete status",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Release has reached End of Life (EOL)",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Patch attachment not flagged as a patch",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Attachment incorrectly flagged as a patch",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Package installation failure",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Security bugs",
+      "describe": "Please see the Ubuntu Security Team's [bug triage](https://wiki.ubuntu.com/SecurityTeam/BugTriage) page."
+    },
+
+    {
+      "header": "Added bug watch",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Hanging application or daemon",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "User incorrectly subscribing a team to a bug",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Bug reported against Firefox snap",
+      "describe": "*UNKNOWN RESPONSE*"
+    },
+
+    {
+      "header": "Bug reported from unofficial derivative (not official flavour)",
+      "describe": "*UNKNOWN RESPONSE*"
+    }
+  ]
+}
